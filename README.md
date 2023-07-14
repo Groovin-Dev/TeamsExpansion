@@ -7,3 +7,9 @@ Adds `6` new PlaceholderAPI expansions:
 - %team_count%
 - %team_count_\<team\>%
 - %team_name%
+
+# How to build
+
+1. Clone the repository
+2. Run the `shadowJar` gradle task
+3. The jar will be in `build/libs/teamsexpansion.jar`
