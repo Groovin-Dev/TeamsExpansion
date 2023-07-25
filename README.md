@@ -13,3 +13,7 @@ Adds `6` new PlaceholderAPI expansions:
 1. Clone the repository
 2. Run the `shadowJar` gradle task
 3. The jar will be in `build/libs/teamsexpansion.jar`
+
+# Original
+
+This repo is based on aother: https://github.com/Paul19988/TeamsExpansion
