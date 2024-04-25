@@ -5,8 +5,13 @@ Adds `6` new PlaceholderAPI expansions:
 - %team_prefix%
 - %team_suffix%
 - %team_count%
-- %team_count_\<team\>%
+- %team_displayname%
 - %team_name%
+
+All placeholders accept an optional team name parameter,
+for example `%team_color_test%` will return the color of the team named `test`.
+
+The team name parameter takes precedence over the player's team.
 
 # How to build
 
