@@ -15,7 +15,7 @@ class TeamsExpansion : PlaceholderExpansion() {
     override fun getName(): String = "TeamsExpansion"
     override fun getIdentifier(): String = "team"
     override fun getAuthor(): String = "Groovin-Dev"
-    override fun getVersion(): String = "0.3-SNAPSHOT"
+    override fun getVersion(): String = javaClass.getResource("/version.txt")?.readText() ?: "Unknown"
     override fun getPlaceholders(): List<String> = listOf("color", "prefix", "suffix", "name", "count", "count_<team>").map { "%${identifier}_$it%" }
 
     override fun onPlaceholderRequest(player: Player?, params: String): String {

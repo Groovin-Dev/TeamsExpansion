@@ -5,8 +5,8 @@ plugins {
     id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
-group = property("group")!!
-version = property("version")!!
+var group = property("group")!!
+var version = property("version")!!
 
 java.toolchain {
     languageVersion.set(JavaLanguageVersion.of(17))
@@ -41,15 +41,32 @@ tasks {
         options.encoding = "UTF-8"
     }
 
+    register("createVersionFile") {
+        val versionFile = file("$buildDir/resources/main/version.txt")
+        outputs.file(versionFile)
+
+        doLast {
+            versionFile.parentFile.mkdirs()
+            versionFile.writeText(project.version.toString())
+        }
+    }
+
+    register("printVersion") {
+        doLast {
+            println(project.version)
+        }
+    }
 
     processResources {
+        dependsOn("createVersionFile")
+
         filesMatching("plugin.yml") {
             expand(project.properties)
         }
     }
 
     shadowJar {
-        archiveBaseName.set(rootProject.name)
+        archiveBaseName.set("${project.name}-${project.version}")
         archiveClassifier.set("")
         archiveVersion.set("")
 
