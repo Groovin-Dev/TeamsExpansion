@@ -1,15 +1,15 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.8.21"
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    kotlin("jvm") version "1.9.22"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 var group = property("group")!!
 var version = property("version")!!
 
 java.toolchain {
-    languageVersion.set(JavaLanguageVersion.of(17))
+    languageVersion.set(JavaLanguageVersion.of(21))
 }
 
 repositories {
@@ -24,17 +24,18 @@ dependencies {
     implementation(kotlin("reflect"))
 
     compileOnly("me.clip:placeholderapi:2.11.6")
-    compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
 }
 
 tasks {
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_21.toString()
         kotlinOptions.javaParameters = true
     }
 
     withType<JavaCompile>() {
         options.encoding = "UTF-8"
+        options.release.set(21)
     }
 
     withType<Javadoc>() {
@@ -42,7 +43,7 @@ tasks {
     }
 
     register("createVersionFile") {
-        val versionFile = file("$buildDir/resources/main/version.txt")
+        val versionFile = file("${layout.buildDirectory.get()}/resources/main/version.txt")
         outputs.file(versionFile)
 
         doLast {
