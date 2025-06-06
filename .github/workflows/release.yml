@@ -19,7 +19,7 @@ jobs:
           distribution: "temurin"
 
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew shadowJar
 
       - name: Get version
         id: get_version
